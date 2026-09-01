@@ -1,0 +1,22 @@
+*.iml
+.gradle
+/local.properties
+.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Android 构建产物
+*.apk
+*.aab
+*.keystore
+*.jks
+app/release/
+*.hprof
+
+# Kotlin
+.kotlin/
+
