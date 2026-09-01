@@ -630,16 +630,16 @@ private fun VinylPlaceholder(modifier: Modifier = Modifier) {
             var radius = maxRadius
             while (radius > maxRadius * 0.18f) {
                 drawCircle(
-                    color = Color.White.copy(alpha = 0.07f),
+                    color = Color.White.copy(alpha = 0.16f),
                     radius = radius,
                     center = center,
-                    style = Stroke(width = 1f),
+                    style = Stroke(width = 2.5f),
                 )
                 radius -= step
             }
             // 高光弧：唱片旋转时位置随之变化，让旋转肉眼可见
             drawArc(
-                color = Color.White.copy(alpha = 0.13f),
+                color = Color.White.copy(alpha = 0.22f),
                 startAngle = 25f,
                 sweepAngle = 60f,
                 useCenter = false,
