@@ -8,9 +8,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Language
-import androidx.compose.material.icons.filled.LibraryMusic
 import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.SmartToy
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -25,8 +25,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.example.litcompose.domain.player.PlayerState
 import com.example.litcompose.ui.player.AppMiniPlayer
+import com.example.litcompose.ui.screen.chat.ChatRoute
 import com.example.litcompose.ui.screen.collection.CollectionsRoute
-import com.example.litcompose.ui.screen.scan.ScanLocalRoute
 import com.example.litcompose.ui.screen.search.SearchRoute
 import com.example.litcompose.ui.screen.web.WebBrowserScreen
 
@@ -42,7 +42,7 @@ fun MainTabsScreen(
     onTogglePlayPause: () -> Unit,
     onSkipPrevious: () -> Unit,
     onSkipNext: () -> Unit,
-    onOpenCollections: () -> Unit,
+    onOpenScan: () -> Unit,
     onOpenCollection: (Long) -> Unit,
 ) {
     var selectedTab by rememberSaveable { mutableIntStateOf(0) }
@@ -52,7 +52,7 @@ fun MainTabsScreen(
         listOf(
             TabItem("主页", Icons.Default.MusicNote),
             TabItem("搜索", Icons.Default.Search),
-            TabItem("扫描", Icons.Default.LibraryMusic),
+            TabItem("AI 问答", Icons.Default.SmartToy),
             TabItem("网页", Icons.Default.Language),
         )
 
@@ -69,6 +69,7 @@ fun MainTabsScreen(
                     0 ->
                         CollectionsRoute(
                             onBack = null,
+                            onOpenScan = onOpenScan,
                             onOpenCollection = onOpenCollection,
                         )
 
@@ -78,20 +79,15 @@ fun MainTabsScreen(
                             onOpenNowPlaying = onOpenNowPlaying,
                         )
 
-                    2 ->
-                        ScanLocalRoute(
-                            onBack = null,
-                            onOpenCollections = onOpenCollections,
-                            onOpenNowPlaying = onOpenNowPlaying,
-                        )
+                    2 -> ChatRoute()
 
                     else -> WebBrowserScreen()
                 }
             }
         }
 
-        // 网页 tab 不展示播放条，避免遮挡页面
-        if (playerState.current != null && selectedTab != 3) {
+        // 网页 / AI 问答 tab 不展示播放条，避免遮挡页面底部内容
+        if (playerState.current != null && selectedTab != 2 && selectedTab != 3) {
             AppMiniPlayer(
                 state = playerState,
                 onOpenNowPlaying = onOpenNowPlaying,

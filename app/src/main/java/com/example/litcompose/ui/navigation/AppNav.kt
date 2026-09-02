@@ -23,12 +23,14 @@ import com.example.litcompose.ui.screen.nowplaying.NowPlayingRoute
 import com.example.litcompose.ui.screen.collection.CollectionDetailRoute
 import com.example.litcompose.ui.screen.collection.CollectionsRoute
 import com.example.litcompose.ui.player.AppMiniPlayer
+import com.example.litcompose.ui.screen.scan.ScanLocalRoute
 
 object Routes {
     const val Library = "library"
     const val NowPlaying = "now_playing"
     const val Collections = "collections"
     const val CollectionDetail = "collection"
+    const val ScanLocal = "scan_local"
 }
 
 @Composable
@@ -57,7 +59,7 @@ fun AppNav(
                     onTogglePlayPause = { app.appContainer.playerController.togglePlayPause() },
                     onSkipPrevious = { app.appContainer.playerController.skipToPrevious() },
                     onSkipNext = { app.appContainer.playerController.skipToNext() },
-                    onOpenCollections = { navController.navigate(Routes.Collections) },
+                    onOpenScan = { navController.navigate(Routes.ScanLocal) },
                     onOpenCollection = { id -> navController.navigate("${Routes.CollectionDetail}/$id") },
                 )
             }
@@ -68,6 +70,13 @@ fun AppNav(
                 CollectionsRoute(
                     onBack = { navController.popBackStack() },
                     onOpenCollection = { id -> navController.navigate("${Routes.CollectionDetail}/$id") },
+                )
+            }
+            composable(Routes.ScanLocal) {
+                ScanLocalRoute(
+                    onBack = { navController.popBackStack() },
+                    onOpenCollections = { navController.navigate(Routes.Collections) },
+                    onOpenNowPlaying = { navController.navigate(Routes.NowPlaying) },
                 )
             }
             composable(

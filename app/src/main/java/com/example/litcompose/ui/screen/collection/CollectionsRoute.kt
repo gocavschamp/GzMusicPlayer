@@ -10,6 +10,7 @@ import com.example.litcompose.core.ViewModelFactory
 @Composable
 fun CollectionsRoute(
     onBack: (() -> Unit)? = null,
+    onOpenScan: () -> Unit = {},
     onOpenCollection: (Long) -> Unit,
 ) {
     val context = LocalContext.current
@@ -34,6 +35,7 @@ fun CollectionsRoute(
     CollectionsScreen(
         viewModel = viewModel,
         onBack = onBack,
+        onOpenScan = onOpenScan,
         onOpenCollection = onOpenCollection,
     )
 }

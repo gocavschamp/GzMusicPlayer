@@ -70,6 +70,7 @@
 详情增加一个列表移除功能
 歌词默认没显示最顶部
 歌词同步稍微慢了几秒
+唱片自定义view看着不太明显吧线条加粗一点 颜色加深一点
 ## 记录
 
 - 文档入口：[.trae/skills/litcompose/SKILL.md](../.trae/skills/litcompose/SKILL.md)（架构、组件、网络、数据库、消息传递、页面功能）

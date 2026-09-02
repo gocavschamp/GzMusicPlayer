@@ -38,6 +38,9 @@ class AppContainer private constructor(
     private val cocoApi = NetworkClient.cocoApi()
     private val trackCache = TrackCache(appContext)
 
+    /** DeepSeek AI 问答接口（Chat tab 使用） */
+    val deepSeekApi = NetworkClient.deepSeekApi()
+
     val lyricsEnricher: LyricsEnricher = LyricsEnricher(appContext, cocoApi, lyricsCacheDao)
 
     val musicRepository: MusicRepository =

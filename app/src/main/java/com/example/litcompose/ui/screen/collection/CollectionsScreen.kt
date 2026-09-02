@@ -17,6 +17,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.LibraryMusic
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -52,6 +53,7 @@ import com.example.litcompose.ui.theme.ThemeController
 fun CollectionsScreen(
     viewModel: CollectionsViewModel,
     onBack: (() -> Unit)?,
+    onOpenScan: () -> Unit,
     onOpenCollection: (Long) -> Unit,
 ) {
     val state by viewModel.state.collectAsState()
@@ -72,6 +74,10 @@ fun CollectionsScreen(
             actions = {
                 IconButton(onClick = { showSettings = true }) {
                     Icon(Icons.Default.Settings, contentDescription = "设置")
+                }
+                // 本地音乐扫描入口
+                IconButton(onClick = onOpenScan) {
+                    Icon(Icons.Default.LibraryMusic, contentDescription = "扫描本地音乐")
                 }
                 Button(onClick = { showCreateDialog = true }) {
                     Text("新建")
