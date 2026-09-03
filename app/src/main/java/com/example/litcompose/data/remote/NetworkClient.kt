@@ -8,7 +8,11 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
-
+/**
+ * @author ywm
+ * @date 2026/9/2 09:32
+ * @desc
+ */
 object NetworkClient {
     private val moshi: Moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
